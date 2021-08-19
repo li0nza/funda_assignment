@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:funda_assignment/models/property_model.dart';
 import 'package:funda_assignment/models/property_feed_model.dart';
 import 'package:funda_assignment/repositories/property_feed.dart';
+import 'package:funda_assignment/views/error.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
@@ -95,15 +96,7 @@ class _PropertyState extends State<Property> {
 
     /// if property is null, something went wrong
     /// TODO: implement retry button, and make this prettier
-    if (repo.property == null)
-      return Center(
-          child: Text(
-        'Something went wrong, yikes. Please try again.',
-        style: TextStyle(
-          color: Theme.of(context).errorColor,
-          fontSize: 22,
-        ),
-      ));
+    if (repo.property == null) return Error(message: 'Something went wrong, yikes. Please try again.');
 
     ///get property details from repository
     PropertyModel propDetails = repo.property!;
